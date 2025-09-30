@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.egg-info/
+build/
+dist/
+
+# Virtual env
+.venv/
+env/
+venv/
+
+# Caches & tooling
+.cache/
+.pytest_cache/
+.ipynb_checkpoints/
+.mypy_cache/
+ruff_cache/
+coverage.xml
+htmlcov/
+
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.env
+.env.*
+
+# Project outputs
+out_*.json
+*.log
+
+# Hugging Face / model artifacts (if created inside repo)
+models/
+*.safetensors
+*.bin
+
+# Data: keep samples, ignore other large files
+data/*
+!data/samples/**
