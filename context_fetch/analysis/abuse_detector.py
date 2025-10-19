@@ -71,6 +71,77 @@ def _lexicon_hits(text: str) -> Dict[str, List[str]]:
     return hits
 
 
+def _context_adjust_scores(sentence: str, score_dict: Dict[str, float], lexicon: Dict[str, List[str]]) -> Dict[str, float]:
+    """Adjust zero-shot scores using simple context rules to reduce false positives.
+
+    - Violence: downweight if no violent lexicon/patterns and sentence lacks intent/action cues
+    - Abuse: downweight if no abuse lexicon and no second-person target
+    - Self-harm: upweight when strong self-harm intent patterns are present
+    - Neutral descriptive: heavily downweight when purely descriptive without harmful intent
+    """
+    s = sentence.lower()
+
+    adjusted = dict(score_dict)
+
+    # Heuristics for intent/action cues
+    intent_verbs = ["kill", "stab", "shoot", "attack", "hurt", "harm", "bomb", "punch", "beat"]
+    has_intent = any(v in s for v in intent_verbs)
+
+    # Second-person targeting often present in harassment
+    has_second_person = any(p in s for p in [" you ", " you're", " you.", " you,", " your "]) or s.startswith("you ")
+
+    # Check for purely descriptive/neutral content
+    descriptive_patterns = [
+        "his eyes were", "her eyes were", "the room was", "it was", "he was", "she was",
+        "the light", "the sound", "the air", "the floor", "the wall", "the door",
+        "like a", "as if", "seemed to", "appeared to", "looked like"
+    ]
+    is_purely_descriptive = any(pattern in s for pattern in descriptive_patterns) and not has_intent
+
+    # Check for suicidal context (should not be tagged as violent threat)
+    suicidal_context = any(phrase in s for phrase in [
+        "dying was", "death would", "kill myself", "end it all", "better off dead",
+        "not worth living", "overdose", "jump from", "fall alone"
+    ])
+
+    # Downweight violence false positives when descriptive only
+    if adjusted.get("violent threat or instruction", 0.0) > 0:
+        if not lexicon["violence"] and not has_intent:
+            adjusted["violent threat or instruction"] *= 0.4
+        
+        # Heavily downweight violence in suicidal contexts (should be self-harm, not violence)
+        if suicidal_context:
+            adjusted["violent threat or instruction"] *= 0.2
+
+    # Downweight abuse when no insults and no second-person target
+    if adjusted.get("abusive or harassing language", 0.0) > 0:
+        if not lexicon["abuse"] and not has_second_person:
+            adjusted["abusive or harassing language"] *= 0.35
+
+    # Heavily downweight all categories for purely descriptive content
+    if is_purely_descriptive and not lexicon["violence"] and not lexicon["abuse"] and not lexicon["self_harm"]:
+        for key in ["violent threat or instruction", "abusive or harassing language", "self-harm or suicide"]:
+            if adjusted.get(key, 0.0) > 0:
+                adjusted[key] *= 0.2
+
+    # Upweight self-harm for clear intent patterns (including third-person narrative of self)
+    self_harm_cues = [
+        "kill myself", "killing myself", "hurt myself", "hurting myself", "end it all",
+        "end my life", "take my life", "want to die", "wanna die", "better off dead",
+        "not worth living", "overdose", "cut myself", "his death would", "my death would",
+        "would help everyone"  # often appears with self-referential death
+    ]
+    if any(cue in s for cue in self_harm_cues) or lexicon["self_harm"]:
+        adjusted["self-harm or suicide"] = max(adjusted.get("self-harm or suicide", 0.0) * 1.2, 0.6)
+
+    # Clamp to [0,1]
+    for k in list(adjusted.keys()):
+        v = adjusted[k]
+        adjusted[k] = 1.0 if v > 1.0 else (0.0 if v < 0.0 else v)
+
+    return adjusted
+
+
 def _severity(score_dict: Dict[str, float], lexicon: Dict[str, List[str]]) -> float:
     # Get zero-shot scores for all categories
     z_violence = score_dict.get("violent threat or instruction", 0.0)
@@ -180,8 +251,10 @@ def detect_abuse(
     flags = []
     severities = []
     for idx, sent in enumerate(sentences):
-        scr = scores[idx]
+        # Contextually adjust zero-shot scores to reduce false positives
+        scr_raw = scores[idx]
         hits = _lexicon_hits(sent)
+        scr = _context_adjust_scores(sent, scr_raw, hits)
         sev = _severity(scr, hits)
         severities.append(sev)
         if sev >= 0.3:  # Lower threshold for better detection
@@ -213,9 +286,16 @@ def detect_abuse(
             unique_flags.append(flag)
             seen_indices.add(flag["sentence_index"])
     
-    # Calculate overall severity including enhanced detection
+    # Calculate overall severity with risk-aware scaling: emphasize top risks
     all_severities = severities + [flag["severity"] for flag in enhanced_flags]
-    overall = round(float(sum(all_severities) / max(1, len(all_severities))), 3)
+    if all_severities:
+        top_sorted = sorted(all_severities, reverse=True)
+        top_max = top_sorted[0]
+        top_k_mean = sum(top_sorted[: min(5, len(top_sorted))]) / min(5, len(top_sorted))
+        overall_val = 0.7 * top_max + 0.3 * top_k_mean
+    else:
+        overall_val = 0.0
+    overall = round(float(min(1.0, max(0.0, overall_val))), 3)
     
     return {"overall_severity": overall, "flags": unique_flags}
 

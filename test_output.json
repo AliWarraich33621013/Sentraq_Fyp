@@ -1,0 +1,409 @@
+{
+  "metadata": {
+    "source": "file",
+    "path": "C:\\Users\\aliwa\\OneDrive\\Desktop\\Context_Fetch\\data\\samples\\sample_transcript.txt"
+  },
+  "summary": "Mark wanted to go to work tomorrow. Not to talk. But to use his grandpa's old knife. It could cut skin easy. He'd start with the guy in the corner office. The one who took his job. Mark pictured the knife going into the man's belly. Blood would pour out hot and wet on the floor. Mark would say, \"This is for all the times you said I was not good enough\" The anger turned on him. It said he was worthless. Maybe dying was the best way to hurt the world. The anger turned on him. His death would help everyone. No more trouble from him. In the bathroom, old pills waited. He could take a bunch. Or jump from the fire escape. Fall to the busy street. People below wouldn't stop. They wouldn't look up from their phones. Mark stood up. Shaky. The anger slept for now. Like a fire under ash. Kill or end it. He danced on the edge. One step, and he could pull everyone down. Or fall alone into nothing. Morning came. Gray light through the blinds. It laughed at him.",
+  "abuse_detection": {
+    "overall_severity": 0.946,
+    "flags": [
+      {
+        "sentence_index": 9,
+        "text": "A loser who ruined her life.",
+        "severity": 0.593,
+        "labels": {
+          "violent threat or instruction": 0.024,
+          "abusive or harassing language": 0.788,
+          "self-harm or suicide": 0.135,
+          "neutral or safe": 0.003
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [
+            "loser"
+          ],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 10,
+        "text": "She hung up.",
+        "severity": 0.5,
+        "labels": {
+          "violent threat or instruction": 0.132,
+          "abusive or harassing language": 0.123,
+          "self-harm or suicide": 0.512,
+          "neutral or safe": 0.572
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 15,
+        "text": "But to use his grandpa's old knife.",
+        "severity": 0.5,
+        "labels": {
+          "violent threat or instruction": 0.396,
+          "abusive or harassing language": 0.019,
+          "self-harm or suicide": 0.698,
+          "neutral or safe": 0.16
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 17,
+        "text": "It could cut skin easy.",
+        "severity": 0.5,
+        "labels": {
+          "violent threat or instruction": 0.254,
+          "abusive or harassing language": 0.118,
+          "self-harm or suicide": 0.315,
+          "neutral or safe": 0.002
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 20,
+        "text": "Mark pictured the knife going into the man's belly.",
+        "severity": 0.543,
+        "labels": {
+          "violent threat or instruction": 0.397,
+          "abusive or harassing language": 0.092,
+          "self-harm or suicide": 0.905,
+          "neutral or safe": 0.001
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 23,
+        "text": "The man would make a choking sound.",
+        "severity": 0.5,
+        "labels": {
+          "violent threat or instruction": 0.389,
+          "abusive or harassing language": 0.243,
+          "self-harm or suicide": 0.542,
+          "neutral or safe": 0.005
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 25,
+        "text": "Mark would say, \"This is for all the times you said I was not good enough.\"",
+        "severity": 0.477,
+        "labels": {
+          "violent threat or instruction": 0.237,
+          "abusive or harassing language": 0.795,
+          "self-harm or suicide": 0.016,
+          "neutral or safe": 0.002
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 26,
+        "text": "Killing him would feel good.",
+        "severity": 0.749,
+        "labels": {
+          "violent threat or instruction": 0.982,
+          "abusive or harassing language": 0.241,
+          "self-harm or suicide": 0.056,
+          "neutral or safe": 0.012
+        },
+        "lexicon_hits": {
+          "violence": [
+            "kill"
+          ],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 30,
+        "text": "Why not kill himself too?",
+        "severity": 0.752,
+        "labels": {
+          "violent threat or instruction": 0.949,
+          "abusive or harassing language": 0.284,
+          "self-harm or suicide": 0.986,
+          "neutral or safe": 0.004
+        },
+        "lexicon_hits": {
+          "violence": [
+            "kill"
+          ],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 34,
+        "text": "Dark thoughts came.",
+        "severity": 0.5,
+        "labels": {
+          "violent threat or instruction": 0.043,
+          "abusive or harassing language": 0.142,
+          "self-harm or suicide": 0.619,
+          "neutral or safe": 0.0
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 35,
+        "text": "Maybe dying was the best way to hurt the world.",
+        "severity": 0.84,
+        "labels": {
+          "violent threat or instruction": 0.197,
+          "abusive or harassing language": 0.324,
+          "self-harm or suicide": 1.0,
+          "neutral or safe": 0.001
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": [
+            "dying"
+          ]
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 36,
+        "text": "He thought of the knife on his own arm.",
+        "severity": 0.585,
+        "labels": {
+          "violent threat or instruction": 0.393,
+          "abusive or harassing language": 0.09,
+          "self-harm or suicide": 0.976,
+          "neutral or safe": 0.02
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 37,
+        "text": "The first cut would hurt.",
+        "severity": 0.534,
+        "labels": {
+          "violent threat or instruction": 0.889,
+          "abusive or harassing language": 0.047,
+          "self-harm or suicide": 0.219,
+          "neutral or safe": 0.001
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 45,
+        "text": "His death would help everyone.",
+        "severity": 0.6,
+        "labels": {
+          "violent threat or instruction": 0.061,
+          "abusive or harassing language": 0.024,
+          "self-harm or suicide": 0.6,
+          "neutral or safe": 0.472
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": [
+            "death"
+          ]
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 47,
+        "text": "In the bathroom, old pills waited.",
+        "severity": 0.532,
+        "labels": {
+          "violent threat or instruction": 0.03,
+          "abusive or harassing language": 0.032,
+          "self-harm or suicide": 0.887,
+          "neutral or safe": 0.031
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 48,
+        "text": "He could take a bunch.",
+        "severity": 0.5,
+        "labels": {
+          "violent threat or instruction": 0.266,
+          "abusive or harassing language": 0.033,
+          "self-harm or suicide": 0.365,
+          "neutral or safe": 0.043
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 50,
+        "text": "Or jump from the fire escape.",
+        "severity": 0.594,
+        "labels": {
+          "violent threat or instruction": 0.077,
+          "abusive or harassing language": 0.138,
+          "self-harm or suicide": 0.991,
+          "neutral or safe": 0.003
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 52,
+        "text": "People below wouldn't stop.",
+        "severity": 0.5,
+        "labels": {
+          "violent threat or instruction": 0.042,
+          "abusive or harassing language": 0.082,
+          "self-harm or suicide": 0.359,
+          "neutral or safe": 0.003
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 58,
+        "text": "Kill or die.",
+        "severity": 1.0,
+        "labels": {
+          "violent threat or instruction": 0.999,
+          "abusive or harassing language": 0.307,
+          "self-harm or suicide": 1.0,
+          "neutral or safe": 0.001
+        },
+        "lexicon_hits": {
+          "violence": [
+            "kill"
+          ],
+          "abuse": [],
+          "self_harm": [
+            "die"
+          ]
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 67,
+        "text": "Like a timer on a bomb.",
+        "severity": 0.753,
+        "labels": {
+          "violent threat or instruction": 0.989,
+          "abusive or harassing language": 0.279,
+          "self-harm or suicide": 0.004,
+          "neutral or safe": 0.0
+        },
+        "lexicon_hits": {
+          "violence": [
+            "bomb"
+          ],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 76,
+        "text": "Kill or end it.",
+        "severity": 0.758,
+        "labels": {
+          "violent threat or instruction": 0.997,
+          "abusive or harassing language": 0.197,
+          "self-harm or suicide": 0.989,
+          "neutral or safe": 0.001
+        },
+        "lexicon_hits": {
+          "violence": [
+            "kill"
+          ],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      },
+      {
+        "sentence_index": 79,
+        "text": "Or fall alone into nothing.",
+        "severity": 0.535,
+        "labels": {
+          "violent threat or instruction": 0.006,
+          "abusive or harassing language": 0.026,
+          "self-harm or suicide": 0.891,
+          "neutral or safe": 0.131
+        },
+        "lexicon_hits": {
+          "violence": [],
+          "abuse": [],
+          "self_harm": []
+        },
+        "timestamp": null
+      }
+    ]
+  },
+  "stats": {
+    "num_sentences": 80,
+    "num_chunks": 4,
+    "total_chars": 2322
+  }
+}

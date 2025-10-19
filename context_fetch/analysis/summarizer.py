@@ -22,11 +22,30 @@ def _hf_summarize(texts: List[str], model_name: str) -> str:
             outputs.append(result[0]["summary_text"])  # type: ignore
         except Exception:
             outputs.append(_lead_k_sentences(chunk, k=3))
+    
+    # Remove duplicate sentences from all outputs
+    def deduplicate_sentences(text: str) -> str:
+        sentences = text.split('. ')
+        unique_sentences = []
+        seen = set()
+        for sent in sentences:
+            sent_clean = sent.strip()
+            if sent_clean and sent_clean not in seen:
+                unique_sentences.append(sent_clean)
+                seen.add(sent_clean)
+        return '. '.join(unique_sentences)
+    
+    # Deduplicate each output first
+    outputs = [deduplicate_sentences(output) for output in outputs]
     combined = " ".join(outputs)
+    # Always deduplicate the final combined result
+    combined = deduplicate_sentences(combined)
+    
     if len(combined.split()) > 300:
         try:
             result = pipe(combined, max_length=250, min_length=80, do_sample=False)
-            return result[0]["summary_text"]
+            summary = result[0]["summary_text"]
+            return deduplicate_sentences(summary)
         except Exception:
             return _lead_k_sentences(combined, k=5)
     return combined
